@@ -11,5 +11,7 @@ public interface IUomService {
 	void removeUomById(Integer id);
 	Uom getOneUom(Integer id);
 	void updateUom(Uom ob);
+	
+	List<Object[]> getUomTypeCount();
 
 }

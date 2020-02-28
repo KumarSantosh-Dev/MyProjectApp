@@ -40,4 +40,11 @@ public class UomDaoImpl implements IUomDao{
 	public void updateUom(Uom ob) {
        ht.update(ob);
 	}
+	
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Object[]> getUomTypeCount() {
+        String hql="select uomType, count(uomType) from in.nit.model.Uom group by uomType";
+		return (List<Object[]>) ht.find(hql);
+	}
 }

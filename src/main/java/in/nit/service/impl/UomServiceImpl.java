@@ -45,4 +45,9 @@ public class UomServiceImpl implements IUomService{
     public void updateUom(Uom ob) {
     	dao.updateUom(ob);
     }
+    
+
+    public List<Object[]> getUomTypeCount() {
+    	return dao.getUomTypeCount();
+    }
 }
