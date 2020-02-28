@@ -3,6 +3,8 @@ package in.nit.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.ShipmentType;
 import in.nit.service.IShipmentTypeService;
+import in.nit.util.ShipmentTypeUtils;
 import in.nit.view.ShipmentTypeExcelView;
 import in.nit.view.ShipmentTypePdfView;
 
@@ -23,6 +26,10 @@ public class ShipmentTypeController {
 
 	@Autowired
 	private IShipmentTypeService service;
+	@Autowired
+	private ServletContext context;
+	@Autowired
+	private ShipmentTypeUtils util;
 
 	/**1.
 	 * Display the Registration Form
@@ -197,5 +204,19 @@ public class ShipmentTypeController {
 		return m;
 	}
 
+	/**10.
+	 * display Charts
+	 * url:/charts,Type:GET
+	 * function:showChart
+	 * viewPage:ShipmentTypeCharts
+	 */
+	@RequestMapping("/charts")
+	public String showChart() {
+		List<Object[]> data=service.getShipmentModeCount();
+		String path=context.getRealPath("/");
+		util.generatePie(path, data);
+		util.generateBar(path, data);
+		return "ShipmentTypeCharts";
+	}
 
 }

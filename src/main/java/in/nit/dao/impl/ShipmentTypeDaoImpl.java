@@ -23,25 +23,30 @@ public class ShipmentTypeDaoImpl implements IShipmentTypeDao {
 	
 	@Override
 	public List<ShipmentType> getAllShipmentTypes() {
-		
 		return ht.loadAll(ShipmentType.class);
 	}
 	
 	@Override
 	public void deleteShipmentType(Integer id) {
-		
 		ht.delete(new ShipmentType(id));
 	}
 	
 	@Override
 	public ShipmentType getOneShipmentType(Integer id) {
-
 		return ht.get(ShipmentType.class, id);
 	}
 	
 	@Override
 	public void updateShipmentType(ShipmentType ob) {
-
 		ht.update(ob);
 	}
+	
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Object[]> getShipmentModeCount() {
+		String hql="select shipMode,count(shipMode) from in.nit.model.ShipmentType group by shipMode";
+		return (List<Object[]>) ht.find(hql);
+	}
+	
+	
 }
