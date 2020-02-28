@@ -5,6 +5,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.WhUserType;
 import in.nit.service.IWhUserTypeService;
+import in.nit.util.WhUserTypeUtils;
 import in.nit.view.WhUserTypeExcelView;
 import in.nit.view.WhUserTypePdfView;
 
@@ -25,6 +28,10 @@ public class WhUserTypeController {
 	
 	@Autowired
 	private IWhUserTypeService service;
+	@Autowired
+	private ServletContext context;
+	@Autowired
+	private WhUserTypeUtils util;
 	
 	/**1.
 	 * Display the Registration Form
@@ -196,6 +203,22 @@ public class WhUserTypeController {
 		}
 		return m;
 	}
+	
+	/**10.
+	 * display Charts
+	 * url:/charts,Type:GET
+	 * function:showChart
+	 * viewPage:WhUserTypeCharts
+	 */
+	@RequestMapping("/charts")
+	public String showChart() {
+		List<Object[]> data=service.getWhUserType_TypeCount();
+		String path=context.getRealPath("/");
+		util.generatePie(path, data);
+		util.generateBar(path, data);
+		return "WhUserTypeCharts";
+	}
+
 
 
 }

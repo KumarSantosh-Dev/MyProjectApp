@@ -12,5 +12,7 @@ public interface IWhUserTypeDao {
 	
 	WhUserType getOneWhUserType(Integer id);
 	void updateWhUserType(WhUserType ob);
+	
+	List<Object[]> getWhUserType_TypeCount();
 
 }

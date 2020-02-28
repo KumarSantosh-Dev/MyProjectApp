@@ -40,5 +40,12 @@ public class WhUserTypeDaoImpl implements IWhUserTypeDao{
 		ht.update(ob);
 	}
 	
-	
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Object[]> getWhUserType_TypeCount() {
+        String hql="select userType ,count(userType) "
+        		+ " from in.nit.model.WhUserType group by userType";
+		return (List<Object[]>) ht.find(hql);
+	}
 }

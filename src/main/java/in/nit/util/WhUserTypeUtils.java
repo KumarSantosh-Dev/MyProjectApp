@@ -12,20 +12,20 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UomUtils {
+public class WhUserTypeUtils {
 
 	public void generatePie(String path,List<Object[]> data) {
 		//Create Dataset
 		DefaultPieDataset dataset=new DefaultPieDataset();
 		for(Object[] arr:data) {
-			//key-uom Type , Val=count
+			//key-userType , Val=count
 			dataset.setValue(arr[0].toString(), Double.valueOf(arr[1].toString()));
 		}
 		//create JFreeChart using ChartFactory
-		JFreeChart chart=ChartFactory.createPieChart3D("Uom Types",dataset,true,true,false);
+		JFreeChart chart=ChartFactory.createPieChart3D("WhUserType Types",dataset,true,true,false);
 		//Save Image as using ChartUtils
 		   try {
-			ChartUtils.saveChartAsJPEG(new File(path+"/resources/images/uomTypePie.jpg"), chart, 400, 400);
+			ChartUtils.saveChartAsJPEG(new File(path+"/resources/images/whUserType_TypePie.jpg"), chart, 400, 400);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,10 +39,10 @@ public class UomUtils {
 			dataset.setValue( Double.valueOf(arr[1].toString()),arr[0].toString(),"");
 		}
 		//create JFreeChart using ChartFactory
-		JFreeChart chart=ChartFactory.createBarChart("Uom Types", "TYPES", "COUNT", dataset);
+		JFreeChart chart=ChartFactory.createBarChart("WhUserType Types", "TYPES", "COUNT", dataset);
 		//Save Image as using ChartUtils
 		   try {
-			ChartUtils.saveChartAsJPEG(new File(path+"/resources/images/uomTypeBar.jpg"), chart, 400, 400);
+			ChartUtils.saveChartAsJPEG(new File(path+"/resources/images/whUserType_TypeBar.jpg"), chart, 400, 400);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
