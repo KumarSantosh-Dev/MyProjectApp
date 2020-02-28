@@ -5,6 +5,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.OrderMethod;
 import in.nit.service.IOrderMethodService;
+import in.nit.util.OrderMethodUtils;
 import in.nit.view.OrderMethodExcelView;
 import in.nit.view.OrderMethodPdfView;
 
@@ -24,6 +27,10 @@ public class OrderMethodController {
 	
 	@Autowired
 	private IOrderMethodService service;
+	@Autowired
+	private ServletContext context;
+	@Autowired
+	private OrderMethodUtils util;
     
 	/**1.
 	 * Display Order Method Register page
@@ -193,6 +200,20 @@ public class OrderMethodController {
 		}	
 		return m;
 	}
-
+	
+	/**10.
+	 * display Charts
+	 * url:/charts,Type:GET
+	 * function:showChart
+	 * viewPage:OrderMethodCharts
+	 */
+	@RequestMapping("/charts")
+	public String showChart() {
+		List<Object[]> data=service.getOrderMethodOrderTypeCount();
+		String path=context.getRealPath("/");
+		util.generatePie(path, data);
+		util.generateBar(path, data);
+		return "OrderMethodCharts";
+	}
 
 }

@@ -11,5 +11,8 @@ public interface IOrderMethodService {
 	void removeOrderMethod(Integer id);
 	OrderMethod getOneOrderMethod(Integer id);
 	void updateOrderMethod(OrderMethod ob);
+	
+	List<Object[]> getOrderMethodOrderTypeCount();
+
 
 }
