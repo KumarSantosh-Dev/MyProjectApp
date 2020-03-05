@@ -20,7 +20,13 @@
     <th>CODE</th> <td>${ob.partCode }</td>
    </tr>
    <tr>
-    <th>DIMENSION</th> <td>${ob.dimension}</td>
+    <th>WEIGHT</th> <td>${ob.weight}</td>
+   </tr>
+   <tr>
+    <th>LENGTH</th> <td>${ob.length}</td>
+   </tr>
+   <tr>
+    <th>HEIGHT</th> <td>${ob.height}</td>
    </tr>
    <tr>
     <th>COST</th> <td>${ob.bCost }</td>

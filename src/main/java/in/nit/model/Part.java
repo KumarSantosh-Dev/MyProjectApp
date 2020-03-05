@@ -1,16 +1,9 @@
 package in.nit.model;
 
-import java.util.List;
-
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -28,11 +21,12 @@ public class Part {
 	@Column(name="pcode")
 	private String partCode;
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "partdimentab", joinColumns = @JoinColumn(name="pid"))
-	@OrderColumn(name = "dpos")
-	@Column(name="dimension")
-	private List<String> dimension;
+	@Column(name="dweight")
+	private Double weight;
+	@Column(name="dlength")
+	private Double length;
+	@Column(name="dheight")
+	private Double height;
 	
     @Column(name = "pcost")
 	private String bCost;
@@ -70,15 +64,32 @@ public class Part {
 		this.partCode = partCode;
 	}
 
-	public List<String> getDimension() {
-		return dimension;
-	}
-
-	public void setDimension(List<String> dimension) {
-		this.dimension = dimension;
-	}
-
 	
+	
+	public Double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
+
+	public Double getLength() {
+		return length;
+	}
+
+	public void setLength(Double length) {
+		this.length = length;
+	}
+
+	public Double getHeight() {
+		return height;
+	}
+
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+
 	public String getbCost() {
 		return bCost;
 	}
@@ -121,10 +132,12 @@ public class Part {
 
 	@Override
 	public String toString() {
-		return "Part [partId=" + partId + ", partCode=" + partCode + ", dimension=" + dimension + ", bCost=" + bCost
-				+ ", baseCurrency=" + baseCurrency + ", uom=" + uom + ", omCode=" + omCode + ", description="
-				+ description + "]";
+		return "Part [partId=" + partId + ", partCode=" + partCode + ", weight=" + weight + ", length=" + length
+				+ ", height=" + height + ", bCost=" + bCost + ", baseCurrency=" + baseCurrency + ", uom=" + uom
+				+ ", omCode=" + omCode + ", description=" + description + "]";
 	}
+
+	
 
 		
 	

@@ -14,9 +14,9 @@
 	<form:form action="save" method="POST" modelAttribute="part">
 	 <pre>
 	PART CODE       :<form:input path="partCode"/>
-	DIMENSION       :<form:checkbox path="dimension" value="w"/>W
-	                 <form:checkbox path="dimension" value="l"/>L
-	                 <form:checkbox path="dimension" value="h"/>H
+	DIMENSION       : W<form:input path="weight" />
+	                  L<form:input path="length" />
+	                  H<form:input path="height" />
 	BASE COST       :<form:input path="bCost"/>
 	BASE CURRENCY   :<form:select path="baseCurrency">
 	                   <form:option value="">-SELECT-</form:option>

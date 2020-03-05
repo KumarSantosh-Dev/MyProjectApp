@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3 style="color: red;text-align: center;">WELCOME TO  PART DATA PAGE!!!</h3>
+<h3 style="color: red;text-align: center;">WELCOME TO  SHIPPING DATA PAGE!!!</h3>
  <a href="excel"><img  src="../resources/images/excel.png" width="100" height="60"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <a href="pdf"><img  src="../resources/images/pdf.png" width="100" height="60"></a>  
     <br/><br/>
@@ -20,43 +20,41 @@
      <tr>
      
        <th>ID</th>
-       <th>CODE</th>
-       <th>WEIGHT</th>
-       <th>LENGTH</th>
-       <th>HEIGHT</th>
-       <th>COST</th>
-       <th>CURRENCY</th>
-       <th>UOM</th>
-       <th>OM CODE</th>
-       <th>DESCRIPTION</th>
+       <th>SHP CODE</th>
+       <th>SHP REF NO</th>
+       <th>COR REF NO</th>
+       <th>CNTCT DTLS</th>
+       <th>SL ORD CODE</th>
+       <th>NOTE</th>
+       <th>BL TO ADDRS</th>
+       <th>SL TO ADDRS</th>
        <th colspan="3">OPERATION</th>
      </tr>
      
      <c:forEach items="${list}" var="ob">
          
          <tr>
-            <td>${ob.partId }</td>
-            <td>${ob.partCode }</td>
-            <td>${ob.weight }</td>
-            <td>${ob.length }</td>
-            <td>${ob.height }</td>
-            <td>${ob.bCost }</td>
-            <td>${ob.baseCurrency }</td>
-            <td>${ob.uom }</td>
-            <td>${ob.omCode }</td>
+            <td>${ob.shpId }</td>
+            <td>${ob.shpCode }</td>
+            <td>${ob.shpRefNo }</td>
+            <td>${ob.corirRefNo }</td>
+            <td>${ob.contactDtls }</td>
+            <td>${ob.slOrdCode }</td>
             <td>${ob.description }</td>
+            <td>${ob.blToAddrs }</td>
+            <td>${ob.shpToAddrs }</td>
             <td>
-                <a href="delete?pid=${ob.partId } ">
+                <a href="delete?sid=${ob.shpId } ">
                   <img  src="../resources/images/delete.png" width="30" height="30">
                 </a>
             </td>
             <td>
-                <a href="edit?pid=${ob.partId } ">
+                <a href="edit?sid=${ob.shpId } ">
                    <img  src="../resources/images/edit.jpg" width="30" height="30">
                 </a>
             </td>
             <td>
-               <a href="view?pid=${ob.partId }">
+               <a href="view?sid=${ob.shpId }">
                   <img  src="../resources/images/view.jpg" width="30" height="30">
                </a>
             </td>
@@ -68,7 +66,7 @@
   ${message}
  </c:when>
  <c:otherwise>
-       <h2>NO PART DATA FOUND</h2>
+       <h2>NO SHIPPING DATA FOUND</h2>
  </c:otherwise>
 </c:choose>
 </body>

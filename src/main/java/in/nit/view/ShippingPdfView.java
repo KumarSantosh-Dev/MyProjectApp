@@ -14,9 +14,9 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import in.nit.model.Part;
+import in.nit.model.Shipping;
 
-public class PartPdfView extends AbstractPdfView{
+public class ShippingPdfView extends AbstractPdfView{
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -28,38 +28,36 @@ public class PartPdfView extends AbstractPdfView{
 			                        		 throws Exception {
 		//download file 
 		response.addHeader("Content-Disposition",
-				           "attachment;filename=PartS.pdf");
+				           "attachment;filename=Shipping.pdf");
 		
 		//create Element
-		Paragraph p=new Paragraph("WELCOME TO Part FILE");
+		Paragraph p=new Paragraph("WELCOME TO SHIPPING FILE");
 		//add element to document
 		document.add(p);
 		//read data from model
-		List<Part> list=(List<Part>) model.get("list");
+		List<Shipping> list=(List<Shipping>) model.get("list");
 		//create a Tbale with no.of columns
-		PdfPTable tab=new PdfPTable(10);
+		PdfPTable tab=new PdfPTable(9);
 		tab.addCell("ID");
-		tab.addCell("CODE");
-		tab.addCell("W");
-		tab.addCell("L");
-		tab.addCell("H");
-		tab.addCell("COST");
-		tab.addCell("CURRENCY");
-		tab.addCell("UOM");
-		tab.addCell("OM CODE");
+		tab.addCell("SHIP CODE");
+		tab.addCell("SHP REF NUM");
+		tab.addCell("COR REF NUM");
+		tab.addCell("CNTCT DETAILS");
+		tab.addCell("SL ORD CODE");
 		tab.addCell("NOTE");
+		tab.addCell("BL TO ADDRS");
+		tab.addCell("SHP TO ADDRS");
 		//add data to table
-		for(Part part:list) {
-			tab.addCell(part.getPartId().toString());
-			tab.addCell(part.getPartCode());
-			tab.addCell(part.getWeight().toString());
-			tab.addCell(part.getLength().toString());
-			tab.addCell(part.getHeight().toString());
-			tab.addCell(part.getbCost());
-			tab.addCell(part.getBaseCurrency());
-			tab.addCell(part.getUom());
-			tab.addCell(part.getOmCode());
-			tab.addCell(part.getDescription());
+		for(Shipping shp:list) {
+			tab.addCell(shp.getShpId().toString());
+			tab.addCell(shp.getShpCode());
+			tab.addCell(shp.getShpRefNo());
+			tab.addCell(shp.getCorirRefNo());
+			tab.addCell(shp.getContactDtls());
+			tab.addCell(shp.getSlOrdCode());
+			tab.addCell(shp.getDescription());
+			tab.addCell(shp.getBlToAddrs());
+			tab.addCell(shp.getShpToAddrs());
 		}
 		//add table to document
 		document.add(tab);

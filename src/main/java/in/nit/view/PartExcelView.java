@@ -38,12 +38,14 @@ public class PartExcelView extends AbstractXlsxView{
 		Row r=s.createRow(0);
 		r.createCell(0).setCellValue("ID");
 		r.createCell(1).setCellValue("CODE");
-		r.createCell(2).setCellValue("DIMENSION");
-		r.createCell(3).setCellValue("BASE COST");
-		r.createCell(4).setCellValue("BASE CURRENCY");
-		r.createCell(5).setCellValue("UOM");
-		r.createCell(6).setCellValue("OREDER CODE");
-		r.createCell(7).setCellValue("DESCRIPTION");
+		r.createCell(2).setCellValue("W");
+		r.createCell(3).setCellValue("L");
+		r.createCell(4).setCellValue("H");
+		r.createCell(5).setCellValue("BASE COST");
+		r.createCell(6).setCellValue("BASE CURRENCY");
+		r.createCell(7).setCellValue("UOM");
+		r.createCell(8).setCellValue("OREDER CODE");
+		r.createCell(9).setCellValue("DESCRIPTION");
 	}
     
 	//set xlsx body
@@ -54,12 +56,14 @@ public class PartExcelView extends AbstractXlsxView{
 			Row r=s.createRow(count++);
 			r.createCell(0).setCellValue(p.getPartId());
 			r.createCell(1).setCellValue(p.getPartCode());
-			r.createCell(2).setCellValue(p.getDimension().toString());
-			r.createCell(3).setCellValue(p.getbCost());
-			r.createCell(4).setCellValue(p.getBaseCurrency());
-			r.createCell(5).setCellValue(p.getUom());
-			r.createCell(6).setCellValue(p.getOmCode());
-			r.createCell(7).setCellValue(p.getDescription());
+			r.createCell(2).setCellValue(p.getWeight());
+			r.createCell(3).setCellValue(p.getLength());
+			r.createCell(4).setCellValue(p.getHeight());
+			r.createCell(5).setCellValue(p.getbCost());
+			r.createCell(6).setCellValue(p.getBaseCurrency());
+			r.createCell(7).setCellValue(p.getUom());
+			r.createCell(8).setCellValue(p.getOmCode());
+			r.createCell(9).setCellValue(p.getDescription());
 		}
 	}
 }
