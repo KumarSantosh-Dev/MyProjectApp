@@ -2,6 +2,7 @@ package in.nit.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.Part;
+import in.nit.service.IOrderMethodService;
 import in.nit.service.IPartService;
+import in.nit.service.IUomService;
+import in.nit.util.CommonUtil;
 import in.nit.view.PartExcelView;
 import in.nit.view.PartPdfView;
 
@@ -23,6 +27,31 @@ public class PartController {
 
 	@Autowired
 	private IPartService service;
+	@Autowired
+	private IUomService uomService;
+	@Autowired
+	private IOrderMethodService omSaleService,omPurchaseService;
+	
+	/**
+	 * It will show Dynamic DropDown at UI
+	 */
+	private void commonUi(Model model) {
+		//Uom Integration
+		List<Object[]> uomList=uomService.getUomIdAndUomModel();
+		Map<Integer,String> uomMap=CommonUtil.convert(uomList);
+		model.addAttribute("uomMap",uomMap);
+		
+		//OrderMethod Sale Integeration
+		List<Object[]> orderSaleList=omPurchaseService.getOrderIdAndOrderCode("Sale");
+		Map<Integer,String> orderSaleMap=CommonUtil.convert(orderSaleList);
+		model.addAttribute("orderSaleMap", orderSaleMap);
+
+		//OrderMethod Purchase Integeration
+		List<Object[]> orderPurchaseList=omSaleService.getOrderIdAndOrderCode("Purchase");
+		Map<Integer,String> orderPurchaseMap=CommonUtil.convert(orderPurchaseList);
+		model.addAttribute("orderPurchaseMap", orderPurchaseMap);
+
+	}
 
 	/**1.
 	 * Display the Registration Form
@@ -33,6 +62,7 @@ public class PartController {
 	@RequestMapping("/register")
 	public String showRegPage(Model model) {
 		model.addAttribute("part", new Part());
+		commonUi(model);
 		return "PartRegister";
 	}
 
@@ -53,6 +83,7 @@ public class PartController {
 		String message="Part '"+id+"' Saved";
 		model.addAttribute("message",message);
 		model.addAttribute("part",new Part());
+		commonUi(model);
 		return "PartRegister";
 	}
 
@@ -107,6 +138,7 @@ public class PartController {
 			) {
 		Part p=service.getOnePart(id);
 		model.addAttribute("part",p);
+		commonUi(model);
 		return "PartEdit";
 	}
 

@@ -31,7 +31,7 @@ public class OrderMethodServiceImpl implements IOrderMethodService {
 		dao.removeOrderMethod(id);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public OrderMethod getOneOrderMethod(Integer id) {
 		return dao.getOneOrderMethod(id);
 	}
@@ -41,8 +41,13 @@ public class OrderMethodServiceImpl implements IOrderMethodService {
 		dao.updateOrderMethod(ob);
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Object[]> getOrderMethodOrderTypeCount() {
 		return dao.getOrderMethodOrderTypeCount();
+	}
+	
+    @Transactional(readOnly = true)
+	public List<Object[]> getOrderIdAndOrderCode(String orderMode) {
+		return dao.getOrderIdAndOrderCode(orderMode);
 	}
 }

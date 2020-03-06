@@ -6,11 +6,11 @@
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-   <script
-	  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-   <script
-	 src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,7 +58,36 @@
 
 				</div></li>
 			<!-- one option end -->
+			
+			<!-- one option start-->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> UOM </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="${url}/uom/register">REGISTER</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/uom/getAll">ALL</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/uom/charts">CHARTS</a>
 
+				</div></li>
+			<!-- one option end -->
+
+<!-- one option start-->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> WHUSER TYPE </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="${url}/user/register">REGISTER</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/user/getAll">ALL</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/user/charts">CHARTS</a>
+
+				</div></li>
+			<!-- one option end -->
 
 
 

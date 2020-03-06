@@ -4,17 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "parttab")
 public class Part {
 
 	@Id
-	@GeneratedValue(generator = "pIdgen")
-	@GenericGenerator(name = "pIdgen" ,strategy = "increment")
+	@GeneratedValue
 	@Column(name="pid")
 	private Integer partId;
 	
@@ -32,10 +32,20 @@ public class Part {
 	private String bCost;
 	@Column(name="curncy")
 	private String baseCurrency;
-	@Column(name="uom")
-	private String uom;
-	@Column(name="omCod")
-	private String omCode;
+	
+	@ManyToOne
+    @JoinColumn(name = "uomIdFk")
+	private Uom uomOb;
+	
+	@ManyToOne
+	@JoinColumn(name = "orderSaleFk")
+	private OrderMethod omSaleOb;
+	
+	@ManyToOne
+	@JoinColumn(name = "orderPurchaseFk")
+	private OrderMethod omPurchaseOb;
+	
+	
 	@Column(name="partdesc")
 	private String description;
 	
@@ -63,8 +73,6 @@ public class Part {
 	public void setPartCode(String partCode) {
 		this.partCode = partCode;
 	}
-
-	
 	
 	public Double getWeight() {
 		return weight;
@@ -106,20 +114,31 @@ public class Part {
 		this.baseCurrency = baseCurrency;
 	}
 
-	public String getUom() {
-		return uom;
+	
+	public Uom getUomOb() {
+		return uomOb;
 	}
 
-	public void setUom(String uom) {
-		this.uom = uom;
+	public void setUomOb(Uom uomOb) {
+		this.uomOb = uomOb;
 	}
 
-	public String getOmCode() {
-		return omCode;
+	public OrderMethod getOmSaleOb() {
+		return omSaleOb;
 	}
 
-	public void setOmCode(String omCode) {
-		this.omCode = omCode;
+	public void setOmSaleOb(OrderMethod omSaleOb) {
+		this.omSaleOb = omSaleOb;
+	}
+	
+	
+
+	public OrderMethod getOmPurchaseOb() {
+		return omPurchaseOb;
+	}
+
+	public void setOmPurchaseOb(OrderMethod omPurchaseOb) {
+		this.omPurchaseOb = omPurchaseOb;
 	}
 
 	public String getDescription() {
@@ -133,12 +152,9 @@ public class Part {
 	@Override
 	public String toString() {
 		return "Part [partId=" + partId + ", partCode=" + partCode + ", weight=" + weight + ", length=" + length
-				+ ", height=" + height + ", bCost=" + bCost + ", baseCurrency=" + baseCurrency + ", uom=" + uom
-				+ ", omCode=" + omCode + ", description=" + description + "]";
+				+ ", height=" + height + ", bCost=" + bCost + ", baseCurrency=" + baseCurrency + ", uomOb=" + uomOb
+				+ ", omSaleOb=" + omSaleOb + ", omPurchaseOb=" + omPurchaseOb + ", description=" + description + "]";
 	}
 
-	
-
-		
 	
 }

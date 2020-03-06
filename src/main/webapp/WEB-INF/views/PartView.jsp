@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -35,10 +36,13 @@
     <th>CURRENCY</th> <td>${ob.baseCurrency }</td>
    </tr>
    <tr>
-    <th>UOM</th> <td>${ob.uom }</td>
+    <th>UOM</th> <td>${ob.uomOb }</td>
   </tr>
    <tr>
-    <th>OM CODE</th> <td>${ob.omCode }</td>
+    <th>OM SALE</th> <td>${ob.omSaleOb }</td>
+  </tr>
+     <tr>
+    <th>OM PURCHASE</th> <td>${ob.omPurchaseOb }</td>
   </tr>
    <tr>
     <th>NOTE</th> <td>${ob.description }</td>

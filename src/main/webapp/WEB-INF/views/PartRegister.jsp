@@ -27,9 +27,21 @@
 	                 </form:select>
 	 
 	 <!-- MODULE INTGRATION REQUIRED HERE  -->                
-	UOM             :<form:select path="uom"></form:select>
-	ORDERMETHOD CODE:<form:select path="omCode"></form:select>
+	UOM             :<form:select path="uomOb.uomId">
+	                   <form:option value="">-SELECT-</form:option>
+	                   <form:options items="${uomMap}"/>
+	                 </form:select>
 	
+	ORDERMETHOD SALE:<form:select path="omSaleOb.orderId">
+	                   <form:option value="">-SELECT-</form:option>
+	                   <form:options items="${orderSaleMap}"/>
+	                 </form:select>
+	ORDERMETHOD PURCHASE:<form:select path="omPurchaseOb.orderId">
+	                   <form:option value="">-SELECT-</form:option>
+	                   <form:options items="${orderPurchaseMap}"/>
+	                 </form:select>
+
+	 
 	Description     :<form:textarea path="description"/>
 	            
 	            <input type="submit" value="CREATE PART"/>

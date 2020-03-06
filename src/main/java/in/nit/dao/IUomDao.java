@@ -13,4 +13,6 @@ public interface IUomDao {
 	void updateUom(Uom ob);
 	
 	List<Object[]> getUomTypeCount();
+	
+	List<Object[]> getUomIdAndUomModel();
 }

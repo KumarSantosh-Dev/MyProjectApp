@@ -44,7 +44,7 @@ public class PartExcelView extends AbstractXlsxView{
 		r.createCell(5).setCellValue("BASE COST");
 		r.createCell(6).setCellValue("BASE CURRENCY");
 		r.createCell(7).setCellValue("UOM");
-		r.createCell(8).setCellValue("OREDER CODE");
+		r.createCell(8).setCellValue("OREDER SALE");
 		r.createCell(9).setCellValue("DESCRIPTION");
 	}
     
@@ -61,8 +61,8 @@ public class PartExcelView extends AbstractXlsxView{
 			r.createCell(4).setCellValue(p.getHeight());
 			r.createCell(5).setCellValue(p.getbCost());
 			r.createCell(6).setCellValue(p.getBaseCurrency());
-			r.createCell(7).setCellValue(p.getUom());
-			r.createCell(8).setCellValue(p.getOmCode());
+			r.createCell(7).setCellValue(p.getUomOb().toString());
+			r.createCell(8).setCellValue(p.getOmSaleOb().toString());
 			r.createCell(9).setCellValue(p.getDescription());
 		}
 	}

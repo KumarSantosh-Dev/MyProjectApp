@@ -15,9 +15,10 @@
 	 <pre>
 	PART ID         :<form:input path="partId"/>
 	PART CODE       :<form:input path="partCode"/>
-	DIMENSION       :<form:checkbox path="dimension" value="w"/>W
-	                 <form:checkbox path="dimension" value="l"/>L
-	                 <form:checkbox path="dimension" value="h"/>H
+	DIMENSION       :
+	              W:  <form:input path="weight" />
+	              L:  <form:input path="length" />
+	              H:  <form:input path="height" />
 	BASE COST       :<form:input path="bCost"/>
 	BASE CURRENCY   :<form:select path="baseCurrency">
 	                   <form:option value="">-SELECT-</form:option>
@@ -28,9 +29,19 @@
 	                 </form:select>
 	 
 	 <!-- MODULE INTGRATION REQUIRED HERE  -->                
-	UOM             :<form:select path="uom"></form:select>
-	ORDERMETHOD CODE:<form:select path="omCode"></form:select>
+	UOM             :<form:select path="uomOb.uomId">
+	                   <form:option value="">-SELECT-</form:option>
+	                   <form:options items="${uomMap}"/>
+	                 </form:select>
 	
+	ORDERMETHOD SALE:<form:select path="omSaleOb.orderId">
+	                   <form:option value="">-SELECT-</form:option>
+	                   <form:options items="${orderSaleMap}"/>
+	                 </form:select>
+	ORDERMETHOD PURCHASE:<form:select path="omPurchaseOb.orderId">
+	                   <form:option value="">-SELECT-</form:option>
+	                   <form:options items="${orderPurchaseMap}"/>
+	                 </form:select>
 	Description     :<form:textarea path="description"/>
 	            <input type="submit" value="UPDATE"/>
 	 </pre>

@@ -48,5 +48,11 @@ public class OrderMethodDaoImpl implements IOrderMethodDao {
         		+ " from in.nit.model.OrderMethod group by orderType";
 		return (List<Object[]>) ht.find(hql);
 	}
-	
+
+	@Override
+	public List<Object[]> getOrderIdAndOrderCode(String orderMode) {
+		String hql=" select orderId,orderCode from in.nit.model.OrderMethod where orderMode=?0 ";
+		List<Object[]> list=(List<Object[]>) ht.find(hql,orderMode);
+		return list;
+	}
 }

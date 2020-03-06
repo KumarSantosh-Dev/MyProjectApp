@@ -27,7 +27,7 @@
        <th>COST</th>
        <th>CURRENCY</th>
        <th>UOM</th>
-       <th>OM CODE</th>
+       <th>OM SALE</th>
        <th>DESCRIPTION</th>
        <th colspan="3">OPERATION</th>
      </tr>
@@ -42,8 +42,9 @@
             <td>${ob.height }</td>
             <td>${ob.bCost }</td>
             <td>${ob.baseCurrency }</td>
-            <td>${ob.uom }</td>
-            <td>${ob.omCode }</td>
+            <td>${ob.uomOb.uomModel }</td>
+            <td>${ob.omSaleOb.orderCode }</td>
+            <td>${ob.omPurchaseOb.orderCode }</td>
             <td>${ob.description }</td>
             <td>
                 <a href="delete?pid=${ob.partId } ">

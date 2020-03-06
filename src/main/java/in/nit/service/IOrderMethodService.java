@@ -13,6 +13,8 @@ public interface IOrderMethodService {
 	void updateOrderMethod(OrderMethod ob);
 	
 	List<Object[]> getOrderMethodOrderTypeCount();
+	
+	List<Object[]> getOrderIdAndOrderCode(String orderMode);
 
 
 }
