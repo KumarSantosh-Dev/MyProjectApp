@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,11 +19,13 @@ public class PurchaseOrder {
     @Column(name = "ordCod")
 	private String orderCode;
    
-    @Column(name = "shipCod")
-	private String shipCode;
+    @ManyToOne
+    @JoinColumn(name = "shipIdFk")
+	private ShipmentType shipCode;
     
-    @Column(name = "vendor")
-	private String vendor;
+    @ManyToOne
+    @JoinColumn(name = "whUserIdFk")
+	private WhUserType vendor;
     
     @Column(name = "refNo")
 	private String refNumber;
@@ -59,20 +63,21 @@ public class PurchaseOrder {
 	public void setOrderCode(String orderCode) {
 		this.orderCode = orderCode;
 	}
-
-	public String getShipCode() {
+	
+	public ShipmentType getShipCode() {
 		return shipCode;
 	}
 
-	public void setShipCode(String shipCode) {
+	public void setShipCode(ShipmentType shipCode) {
 		this.shipCode = shipCode;
 	}
-
-	public String getVendor() {
+	
+	
+	public WhUserType getVendor() {
 		return vendor;
 	}
 
-	public void setVendor(String vendor) {
+	public void setVendor(WhUserType vendor) {
 		this.vendor = vendor;
 	}
 
@@ -114,6 +119,5 @@ public class PurchaseOrder {
 				+ vendor + ", refNumber=" + refNumber + ", qltyCheck=" + qltyCheck + ", defStatus=" + defStatus
 				+ ", description=" + description + "]";
 	}
-    
-    
+	
 }

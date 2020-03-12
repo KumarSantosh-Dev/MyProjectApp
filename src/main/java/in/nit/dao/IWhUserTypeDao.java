@@ -14,5 +14,6 @@ public interface IWhUserTypeDao {
 	void updateWhUserType(WhUserType ob);
 	
 	List<Object[]> getWhUserType_TypeCount();
-
+	
+	List<Object[]> getWhUserIdAndCode(String userType);
 }

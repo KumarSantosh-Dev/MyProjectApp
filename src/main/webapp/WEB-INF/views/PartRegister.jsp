@@ -32,14 +32,14 @@
 	                   <form:options items="${uomMap}"/>
 	                 </form:select>
 	
-	ORDERMETHOD SALE:<form:select path="omSaleOb.orderId">
-	                   <form:option value="">-SELECT-</form:option>
-	                   <form:options items="${orderSaleMap}"/>
-	                 </form:select>
-	ORDERMETHOD PURCHASE:<form:select path="omPurchaseOb.orderId">
-	                   <form:option value="">-SELECT-</form:option>
-	                   <form:options items="${orderPurchaseMap}"/>
-	                 </form:select>
+	ORDER METHOD CODE:<form:select path="omSaleOb.orderId">
+	                    <form:option value="">-SELECT-</form:option>
+	                    <form:options items="${orderSaleMap}"/>
+	                  </form:select>
+	                  <form:select path="omPurchaseOb.orderId">
+	                    <form:option value="">-SELECT-</form:option>
+	                    <form:options items="${orderPurchaseMap}"/>
+	                  </form:select>
 
 	 
 	Description     :<form:textarea path="description"/>

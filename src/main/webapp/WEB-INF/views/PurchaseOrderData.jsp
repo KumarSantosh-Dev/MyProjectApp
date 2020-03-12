@@ -35,8 +35,8 @@
          <tr>
             <td>${ob.orderId }</td>
             <td>${ob.orderCode }</td>
-            <td>${ob.shipCode }</td>
-            <td>${ob.vendor }</td>
+            <td>${ob.shipCode.shipMode }</td>
+            <td>${ob.vendor.userCode }</td>
             <td>${ob.refNumber }</td>
             <td>${ob.qltyCheck }</td>
             <td>${ob.defStatus }</td>

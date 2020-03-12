@@ -2,6 +2,7 @@ package in.nit.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.SaleOrder;
 import in.nit.service.ISaleOrderService;
+import in.nit.service.IShipmentTypeService;
+import in.nit.service.IWhUserTypeService;
+import in.nit.util.CommonUtil;
 import in.nit.view.SaleOrderExcelView;
 import in.nit.view.SaleOrderPdfView;
 
@@ -24,6 +28,21 @@ public class SaleOrderController {
 	@Autowired
 	private ISaleOrderService service;
 
+	@Autowired
+	private IShipmentTypeService shipmentService;
+	@Autowired
+	private IWhUserTypeService whUserService;
+
+	private void commonUi(Model model) {
+		List<Object[]> shipmentList=shipmentService.getShipmentIdAndCode();
+		Map<Integer,String> shipmentMap=CommonUtil.convert(shipmentList);
+		model.addAttribute("shipmentMap", shipmentMap);
+
+		List<Object[]> custList=whUserService.getWhUserIdAndCode("customer");
+		Map<Integer,String> custMap=CommonUtil.convert(custList);
+		model.addAttribute("custMap", custMap);
+	}
+
 	/**1.
 	 * Display the Registration Form
 	 * URL:/register,Type:GET
@@ -32,7 +51,10 @@ public class SaleOrderController {
 	 */
 	@RequestMapping("/register")
 	public String showRegPage(Model model) {
-		model.addAttribute("saleOrder", new SaleOrder());
+		 SaleOrder so=new SaleOrder();
+		 so.setStatus("SALE-OPEN");
+		model.addAttribute("saleOrder",so);
+		commonUi(model);
 		return "SaleOrderRegister";
 	}
 
@@ -52,7 +74,10 @@ public class SaleOrderController {
 		Integer id=service.saveSaleOrder(saleOrder);
 		String message="SaleOrder '"+id+"' Saved";
 		model.addAttribute("message",message);
-		model.addAttribute("saleOrder",new SaleOrder());
+		SaleOrder so=new SaleOrder();
+		so.setStatus("SALE-OPEN");
+		model.addAttribute("saleOrder",so);
+		commonUi(model);
 		return "SaleOrderRegister";
 	}
 
@@ -107,6 +132,7 @@ public class SaleOrderController {
 			) {
 		SaleOrder so=service.getOneSaleOrder(id);
 		model.addAttribute("saleOrder",so);
+		commonUi(model);
 		return "SaleOrderEdit";
 	}
 
@@ -170,7 +196,7 @@ public class SaleOrderController {
 			SaleOrder so=service.getOneSaleOrder(id);
 			m.addObject("list",Arrays.asList(so));
 		}
-		
+
 		return m;
 	}
 

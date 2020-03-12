@@ -47,4 +47,9 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService{
 	public List<Object[]> getWhUserType_TypeCount() {
 		return dao.getWhUserType_TypeCount();
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Object[]> getWhUserIdAndCode(String userType) {
+		return dao.getWhUserIdAndCode(userType);
+	}
 }

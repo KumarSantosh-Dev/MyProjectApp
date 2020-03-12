@@ -13,7 +13,7 @@
 	
 	<form:form action="update" method="POST" modelAttribute="part">
 	 <pre>
-	PART ID         :<form:input path="partId"/>
+	PART ID         :<form:input path="partId" readonly="true"/>
 	PART CODE       :<form:input path="partCode"/>
 	DIMENSION       :
 	              W:  <form:input path="weight" />
@@ -34,11 +34,12 @@
 	                   <form:options items="${uomMap}"/>
 	                 </form:select>
 	
-	ORDERMETHOD SALE:<form:select path="omSaleOb.orderId">
+	ORDERMETHOD CODE:<form:select path="omSaleOb.orderId">
 	                   <form:option value="">-SELECT-</form:option>
 	                   <form:options items="${orderSaleMap}"/>
 	                 </form:select>
-	ORDERMETHOD PURCHASE:<form:select path="omPurchaseOb.orderId">
+	                 
+	                 <form:select path="omPurchaseOb.orderId">
 	                   <form:option value="">-SELECT-</form:option>
 	                   <form:options items="${orderPurchaseMap}"/>
 	                 </form:select>

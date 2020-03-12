@@ -15,8 +15,14 @@
 	 <pre>
 	  SALE ID        :<form:input path="saleId"/>
 	  ORDER CODE     :<form:input path="ordCode"/>
-	  SHIPMENT CODE  :<form:select path="shipCode"></form:select>
-	  CUSTOMER       :<form:select path="customer"></form:select>
+	  SHIPMENT CODE  :<form:select path="shipCode.shipId">
+	                    <form:option value="">-SELECT-</form:option>
+	                    <form:options items="${shipmentMap }"/>
+	                  </form:select>
+	  CUSTOMER       :<form:select path="customer.userId">
+	                     <form:option value="">-SELECT-</form:option>
+	                     <form:options items="${custMap }"/>
+	                  </form:select>
 	  REF NUMBER     :<form:input path="refNum"/>
 	  STOCK MODE     :<form:radiobutton path="stMode" value="grade"/>GRADE
 	                  <form:radiobutton path="stMode" value="margin"/>MARGIN
@@ -26,7 +32,7 @@
 	                    <form:option value="avail">AVAIL</form:option>
 	                    <form:option value="refund">REFUND</form:option>
 	                  </form:select>
-	  DEFAULT STATUS :<form:input path="status"/>
+	  DEFAULT STATUS :<form:input path="status" readonly="true"/>
 	  Description    :<form:textarea path="saleDesc"/>
 	            
 	            <input type="submit" value="UPDATE SALE ORDER"/>

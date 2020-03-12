@@ -2,6 +2,7 @@ package in.nit.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.PurchaseOrder;
 import in.nit.service.IPurchaseOrderService;
+import in.nit.service.IShipmentTypeService;
+import in.nit.service.IWhUserTypeService;
+import in.nit.util.CommonUtil;
 import in.nit.view.PurchaseOrderExcelView;
 import in.nit.view.PurchaseOrderPdfView;
 
@@ -23,6 +27,20 @@ public class PurchaseOrderController {
 
 	@Autowired
 	private IPurchaseOrderService service;
+	@Autowired
+	private IShipmentTypeService shipmentService;
+	@Autowired
+	private IWhUserTypeService whUserService;
+	
+	private void commonUi(Model model) {
+		List<Object[]> shipmentList=shipmentService.getShipmentIdAndCode();
+		Map<Integer,String> shipmentMap=CommonUtil.convert(shipmentList);
+		model.addAttribute("shipmentMap", shipmentMap);
+		
+		List<Object[]> venList=whUserService.getWhUserIdAndCode("vendor");
+		Map<Integer,String> venMap=CommonUtil.convert(venList);
+		model.addAttribute("venMap", venMap);
+	}
 	
 	/**1.
 	 * Display the Registration Form
@@ -32,7 +50,10 @@ public class PurchaseOrderController {
 	 */
 	@RequestMapping("/register")
 	public String showRegPage(Model model) {
-		model.addAttribute("purchaseOrder", new PurchaseOrder());
+		PurchaseOrder po= new PurchaseOrder();
+		po.setDefStatus("OPEN");
+		model.addAttribute("purchaseOrder",po);
+		commonUi(model);
 		return "PurchaseOrderRegister";
 	}
 
@@ -52,7 +73,12 @@ public class PurchaseOrderController {
 		Integer id=service.savePurchaseOrder(purchaseOrder);
 		String message="PurchaseOrder '"+id+"' Saved";
 		model.addAttribute("message",message);
-		model.addAttribute("purchaseOrder",new PurchaseOrder());
+		
+		PurchaseOrder po= new PurchaseOrder();
+		po.setDefStatus("OPEN");
+		model.addAttribute("purchaseOrder",po);
+		
+		commonUi(model);
 		return "PurchaseOrderRegister";
 	}
 
@@ -107,6 +133,7 @@ public class PurchaseOrderController {
 			) {
 		PurchaseOrder po=service.getOnePurchaseOrder(id);
 		model.addAttribute("purchaseOrder",po);
+		commonUi(model);
 		return "PurchaseOrderEdit";
 	}
 

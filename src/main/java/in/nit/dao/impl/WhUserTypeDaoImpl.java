@@ -11,7 +11,7 @@ import in.nit.model.WhUserType;
 
 @Repository
 public class WhUserTypeDaoImpl implements IWhUserTypeDao{
-	
+
 	@Autowired
 	private HibernateTemplate ht;
 
@@ -19,12 +19,12 @@ public class WhUserTypeDaoImpl implements IWhUserTypeDao{
 	public Integer saveWhUserType(WhUserType ob) {
 		return (Integer)ht.save(ob);
 	}
-	
+
 	@Override
 	public List<WhUserType> getAllWhUserTypes() {
 		return ht.loadAll(WhUserType.class);
 	}
-	
+
 	@Override
 	public void removeWhUserType(Integer id) {
 		ht.delete(new WhUserType(id));
@@ -39,13 +39,20 @@ public class WhUserTypeDaoImpl implements IWhUserTypeDao{
 	public void updateWhUserType(WhUserType ob) {
 		ht.update(ob);
 	}
-	
+
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Object[]> getWhUserType_TypeCount() {
-        String hql="select userType ,count(userType) "
-        		+ " from in.nit.model.WhUserType group by userType";
+		String hql="select userType ,count(userType) "
+				+ " from in.nit.model.WhUserType group by userType";
 		return (List<Object[]>) ht.find(hql);
+	}
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Object[]> getWhUserIdAndCode(String userType) {
+		String hql=" select userId,userCode from "+WhUserType.class.getName() +" where userType=?0 ";
+		return (List<Object[]>) ht.find(hql, userType);
 	}
 }

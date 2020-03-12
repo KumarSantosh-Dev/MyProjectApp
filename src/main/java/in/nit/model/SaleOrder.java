@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,13 +16,18 @@ public class SaleOrder {
 	@GeneratedValue
 	@Column(name = "sid")
 	private Integer saleId;
-	
+
 	@Column(name = "ordCod")
 	private String ordCode;
-	@Column(name = "shpCod")
-	private String shipCode;
-	@Column(name = "cust")
-	private String customer;
+
+	@ManyToOne
+	@JoinColumn(name = "shipmIdFk")
+	private ShipmentType shipCode;
+
+	@ManyToOne
+	@JoinColumn(name="whUserIdFk")
+	private WhUserType customer;
+
 	@Column(name = "refNo")
 	private String refNum;
 	@Column(name = "stMod")
@@ -31,7 +38,7 @@ public class SaleOrder {
 	private String status;
 	@Column(name = "sDesc")
 	private String saleDesc;
-	
+
 	public SaleOrder() {
 		super();
 	}
@@ -57,19 +64,20 @@ public class SaleOrder {
 		this.ordCode = ordCode;
 	}
 
-	public String getShipCode() {
+
+	public ShipmentType getShipCode() {
 		return shipCode;
 	}
 
-	public void setShipCode(String shipCode) {
+	public void setShipCode(ShipmentType shipCode) {
 		this.shipCode = shipCode;
 	}
 
-	public String getCustomer() {
+	public WhUserType getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(String customer) {
+	public void setCustomer(WhUserType customer) {
 		this.customer = customer;
 	}
 
@@ -119,7 +127,5 @@ public class SaleOrder {
 				+ customer + ", refNum=" + refNum + ", stMode=" + stMode + ", stSource=" + stSource + ", status="
 				+ status + ", saleDesc=" + saleDesc + "]";
 	}
-	
-	
-	
+
 }

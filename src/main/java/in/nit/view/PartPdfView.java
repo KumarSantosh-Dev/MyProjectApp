@@ -47,6 +47,7 @@ public class PartPdfView extends AbstractPdfView{
 		tab.addCell("CURRENCY");
 		tab.addCell("UOM");
 		tab.addCell("ORDER SALE");
+		tab.addCell("ORDER PURCHASE");
 		tab.addCell("NOTE");
 		//add data to table
 		for(Part part:list) {
@@ -58,7 +59,8 @@ public class PartPdfView extends AbstractPdfView{
 			tab.addCell(part.getbCost());
 			tab.addCell(part.getBaseCurrency());
 			tab.addCell(part.getUomOb().toString());
-			tab.addCell(part.getOmSaleOb().toString());
+			tab.addCell(part.getOmSaleOb().getOrderCode());
+			tab.addCell(part.getOmPurchaseOb().getOrderCode());
 			tab.addCell(part.getDescription());
 		}
 		//add table to document

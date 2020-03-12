@@ -14,4 +14,6 @@ public interface IShipmentTypeDao {
 	void updateShipmentType(ShipmentType ob);
 	
 	List<Object[]> getShipmentModeCount();
+	
+	List<Object[]> getShipmentIdAndCode();
 }

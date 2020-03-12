@@ -51,8 +51,8 @@ public class SaleOrderPdfView extends AbstractPdfView{
 		for(SaleOrder so:list) {
 			tab.addCell(so.getSaleId().toString());
 			tab.addCell(so.getOrdCode());
-			tab.addCell(so.getShipCode());
-			tab.addCell(so.getCustomer());
+			tab.addCell(so.getShipCode().getShipCode());
+			tab.addCell(so.getCustomer().getUserCode());
 			tab.addCell(so.getRefNum());
 			tab.addCell(so.getStMode());
 			tab.addCell(so.getStSource());

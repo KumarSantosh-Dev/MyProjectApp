@@ -28,6 +28,7 @@
        <th>CURRENCY</th>
        <th>UOM</th>
        <th>OM SALE</th>
+       <th>OM PURCHASE</th>
        <th>DESCRIPTION</th>
        <th colspan="3">OPERATION</th>
      </tr>

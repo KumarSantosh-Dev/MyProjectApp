@@ -50,8 +50,8 @@ public class PurchaseOrderPdfView extends AbstractPdfView{
 		for(PurchaseOrder po:list) {
 			tab.addCell(po.getOrderId().toString());
 			tab.addCell(po.getOrderCode());
-			tab.addCell(po.getShipCode());
-			tab.addCell(po.getVendor());
+			tab.addCell(po.getShipCode().getShipCode());
+			tab.addCell(po.getVendor().getUserCode());
 			tab.addCell(po.getRefNumber());
 			tab.addCell(po.getQltyCheck());
 			tab.addCell(po.getDefStatus());
@@ -61,7 +61,6 @@ public class PurchaseOrderPdfView extends AbstractPdfView{
 		document.add(tab);
 		//print date and time
 		document.add(new Paragraph(new Date().toString()));
-		
 	}
 
 }

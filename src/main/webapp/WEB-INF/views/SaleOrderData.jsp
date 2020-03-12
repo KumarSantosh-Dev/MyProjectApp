@@ -36,8 +36,8 @@
          <tr>
             <td>${ob.saleId }</td>
             <td>${ob.ordCode }</td>
-            <td>${ob.shipCode }</td>
-            <td>${ob.customer }</td>
+            <td>${ob.shipCode.shipMode }</td>
+            <td>${ob.customer.userCode }</td>
             <td>${ob.refNum }</td>
             <td>${ob.stMode }</td>
             <td>${ob.stSource }</td>
