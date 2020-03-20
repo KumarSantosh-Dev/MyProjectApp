@@ -58,7 +58,7 @@
 
 				</div></li>
 			<!-- one option end -->
-			
+
 			<!-- one option start-->
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -74,7 +74,7 @@
 				</div></li>
 			<!-- one option end -->
 
-<!-- one option start-->
+			<!-- one option start-->
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -86,6 +86,18 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${url}/user/charts">CHARTS</a>
 
+				</div></li>
+			<!-- one option end -->
+			<!-- one option start-->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> PURCHSE ORDER </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="${url}/porder/register">REGISTER</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/user/getAll">ALL</a>
+					<div class="dropdown-divider"></div>
 				</div></li>
 			<!-- one option end -->
 

@@ -59,6 +59,8 @@ public class UomController {
 		Integer id=service.saveUom(uom);
 		String message="Uom is Succefully Saved With ID: "+id;
 		model.addAttribute("message",message);
+		model.addAttribute("uom",new Uom());
+
 		return "UomRegister";
 	}
 

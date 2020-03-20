@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
    <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,7 @@
 </head>
 <body>
    <%@include file="UserMenu.jsp" %>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
    
    <div class="container">
     <div class="card">
@@ -33,7 +36,7 @@
                 </form:select>
           </div>
           <div class="col-4">
-             <!-- ERROR MESSAGE -->
+             <span id="uomTypeError"></span>
           </div>
           </div>
           <!-- One Row End -->
@@ -47,7 +50,7 @@
               <form:input path="uomModel" class="form-control"/>
             </div>
             <div class="col-4">
-              <!-- ERROR MESSAGE -->
+              <span id="uomModelError"></span>
             </div>
           </div>
           <!-- One Row End -->
@@ -61,7 +64,7 @@
               <form:textarea path="uomDesc" class="form-control"/>
             </div>
             <div class="col-4">
-              <!-- ERROR MESSAGE -->
+              <span id="uomDescError"></span>
             </div>
           </div>
           <!-- One Row End -->
@@ -70,7 +73,7 @@
           <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-              <input type="submit" value="CREATE UOM" class="btn btn-success"/>
+              <input type="submit" value="CREATE UOM" id="register" class="btn btn-success"/>
             </div>
             <div class="col-4">
               <!-- ERROR MESSAGE -->
@@ -87,7 +90,102 @@
       </c:if>
     </div><!-- End Card -->
    </div><!-- End of Container -->
-   
-  
+ 
+ 
+ <!-- JQUERY VALIDATION  -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//hide error section
+			$("#uomDescError").hide();
+			$("#uomModelError").hide();
+			$("#uomTypeError").hide();
+
+			//define error variable]
+			var uomDescError = false;
+			var uomModelError = false;
+			var uomTypeError = false;
+
+			//define validate function
+			function validate_uomType() {
+				//read variable
+				var val = $("#uomType").val();
+				//check val validate or not
+				if (val == '') {
+					$("#uomTypeError").show();
+					$("#uomTypeError").html("Choose One <b> Uom Type</b>");
+					$("#uomTypeError").css("color", "red");
+					uomTypeError = false;
+				} else {
+					$("#uomTypeError").hide();
+					uomTypeError = truee;
+				}
+				return uomTypeError;
+			}
+
+			function validate_uomModel() {
+				//read variable 
+				var val = $("#uomModel").val();
+				//check val validate / not 
+				if (val == '') {
+					$("#uomModelError").show();
+					$("#uomModelError").html("<b>Model Name</b> Required");
+					$("#uomModelError").css("color", "red");
+					uomModelError = false;
+				} else {
+					$("#uomModelError").hide();
+					uomModelError = true;
+				}
+				return uomModelError;
+			}
+
+			function validate_uomDesc() {
+				//read variable
+				var val = $("#uomDesc").val();
+				//check var validate or not
+				if (val == '') {
+					$("#uomDescError").show();
+					$("#uomDescError").html("<b>UOM NOTE </b> Required");
+					$("#uomDescError").css("color", "red");
+					uomDescError = false;
+				} else {
+					$("#uomDescError").hide();
+					uomDescError = true;
+				}
+				return uomDescError;
+			}
+
+			//link with action event
+			$("#uomDesc").keyup(function() {
+				validate_uomDesc();
+			});
+			$("#uomModel").keyup(function() {
+				validate_uomModel();
+			});
+			$("#uomType").change(function() {
+				validate_uomType();
+			});
+
+           //click on create UOM button
+	         $("#register").click(function(){
+                   //on click create button
+                   //reset flag as false
+	 			    uomDescError = false;
+				    uomModelError = false;
+				    uomTypeError = false;
+				   //call validate function
+				    validate_uomType();
+				    validate_uomModel();
+				    validate_uomDesc();
+
+				  //check if all are true then submit else don't
+					  if(uomDescError && uomModelError && uomTypeError){
+                            return true;
+						  }
+					  else return false;
+		         });
+			
+		});
+	</script>
+
 </body>
 </html>

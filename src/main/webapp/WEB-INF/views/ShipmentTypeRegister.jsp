@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +13,10 @@
 
 	<%@include file="UserMenu.jsp"%>
 	<div class="container">
-		<div class="card">
+		<div class="card" >
 
-			<div class="card-header bg-primary text-center text-white
+			<div
+				class="card-header bg-primary text-center text-white
 				text-uppercase">
 				<h3>WELCOME TO SHIPMENT TYPE REGISTER PAGE!!!</h3>
 			</div>
@@ -108,8 +109,8 @@
 					<div class="row">
 						<div class="col-4"></div>
 						<div class="col-4">
-							<input type="submit" value="CREATE" class="btn btn-success" />
-							 <input type="reset" value="CLEAN" class="btn btn-danger" />
+							<input type="submit" value="CREATE" class="btn btn-success" /> <input
+								type="reset" value="CLEAN" class="btn btn-danger" />
 						</div>
 					</div>
 					<!-- 6 Row End -->
@@ -117,9 +118,9 @@
 				</form:form>
 			</div>
 			<!-- End body -->
-             <c:if test="${!empty message }">
-			  <div class="card-footer bg-info text-white text-center">${message}</div>
-			 </c:if>
+			<c:if test="${!empty message }">
+				<div class="card-footer bg-info text-white text-center">${message}</div>
+			</c:if>
 			<!-- End of Footer -->
 		</div>
 		<!-- End of Card -->
