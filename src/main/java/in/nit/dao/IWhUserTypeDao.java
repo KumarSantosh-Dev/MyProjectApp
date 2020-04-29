@@ -16,4 +16,9 @@ public interface IWhUserTypeDao {
 	List<Object[]> getWhUserType_TypeCount();
 	
 	List<Object[]> getWhUserIdAndCode(String userType);
+	//validation methods
+	boolean isUserCodeExist(String userCode);
+	boolean isUserEmailExist(String userEmail);
+	boolean isUserContactExist(String userContact);
+	boolean isidNumExist(String idNum);
 }

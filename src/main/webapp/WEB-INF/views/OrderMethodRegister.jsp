@@ -39,6 +39,7 @@
               <form:input path="orderCode" class="form-control"/>
            </div>
            <div class="col-4">
+             <form:errors path="orderCode" cssClass="text-danger"/>
            </div>
          </div> <!-- Second row -->
          

@@ -16,4 +16,6 @@ public interface IShipmentTypeDao {
 	List<Object[]> getShipmentModeCount();
 	
 	List<Object[]> getShipmentIdAndCode();
+	
+	boolean isShipCodeExist(String shipCode);
 }

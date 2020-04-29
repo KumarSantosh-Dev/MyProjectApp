@@ -50,4 +50,9 @@ public class OrderMethodServiceImpl implements IOrderMethodService {
 	public List<Object[]> getOrderIdAndOrderCode(String orderMode) {
 		return dao.getOrderIdAndOrderCode(orderMode);
 	}
+	
+	@Transactional(readOnly = true)
+	public boolean isOrderCodeExist(String orderCode) {
+		return dao.isOrderCodeExist(orderCode);
+	}
 }

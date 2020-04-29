@@ -55,4 +55,71 @@ public class WhUserTypeDaoImpl implements IWhUserTypeDao{
 		String hql=" select userId,userCode from "+WhUserType.class.getName() +" where userType=?0 ";
 		return (List<Object[]>) ht.find(hql, userType);
 	}
+	
+	@Override
+	public boolean isUserCodeExist(String userCode) {
+		boolean flag=false;
+		String hql=" SELECT COUNT(userCode) FROM in.nit.model.WhUserType WHERE userCode=?0 ";
+		@SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql, userCode);
+		
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0)
+				flag=false;
+			else
+				flag=true;
+		}
+		return flag;
+	}
+	@Override
+	public boolean isUserEmailExist(String userEmail) {
+		boolean flag=false;
+		String hql=" SELECT COUNT(userEmail) FROM in.nit.model.WhUserType WHERE userEmail=?0 ";
+		@SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql, userEmail);
+		
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0)
+				flag=false;
+			else
+				flag=true;
+		}
+		return flag;
+	}
+	
+	@Override
+	public boolean isUserContactExist(String userContact) {
+		boolean flag=false;
+		String hql=" SELECT COUNT(userContact) FROM in.nit.model.WhUserType WHERE userContact=?0 ";
+		@SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql, userContact);
+		
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0)
+				flag=false;
+			else
+				flag=true;
+		}
+		return flag;
+	}
+	@Override
+	public boolean isidNumExist(String idNum) {
+		boolean flag=false;
+		String hql=" SELECT COUNT(idNum) FROM in.nit.model.WhUserType WHERE idNum=?0 ";
+		@SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql, idNum);
+		
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0)
+				flag=false;
+			else
+				flag=true;
+		}
+		return flag;
+
+	}
 }

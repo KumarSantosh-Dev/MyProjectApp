@@ -12,6 +12,8 @@
 <body>
 
 	<%@include file="UserMenu.jsp"%>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	
 	<div class="container">
 		<div class="card" >
 
@@ -39,7 +41,7 @@
 							</form:select>
 						</div>
 						<div class="col-4">
-							<!-- ERROR -->
+							<span id="shipModeError"></span>
 						</div>
 					</div>
 					<!-- End one ROW -->
@@ -51,8 +53,11 @@
 						<div class="col-4">
 							<form:input path="shipCode" class="form-control" />
 						</div>
-						<div class="col-4">
-							<!-- ERROR -->
+						<div class="col-2">
+							<span id="shipCodeError"></span>
+						</div>
+						<div class="col-2">
+						   <form:errors path="shipCode" cssClass="text-danger"/>
 						</div>
 					</div>
 					<!-- 2 ROW End -->
@@ -69,7 +74,7 @@
 							</form:select>
 						</div>
 						<div class="col-4">
-							<!-- ERROR -->
+							<span id="enbShipError"></span>
 						</div>
 					</div>
 					<!-- 3 ROW End -->
@@ -79,15 +84,15 @@
 							<label for="shipGrd">Shipment Grade </label>
 						</div>
 						<div class="col-4">
-							<form:radiobutton path="shipGrd" value="A" />
+							<form:radiobutton path="shipGrd" id="shipGrd1" value="A" />
 							A
-							<form:radiobutton path="shipGrd" value="B" />
+							<form:radiobutton path="shipGrd" id="shipGrd2" value="B" />
 							B
-							<form:radiobutton path="shipGrd" value="C" />
+							<form:radiobutton path="shipGrd" id="shipGrd3" value="C" />
 							C
 						</div>
 						<div class="col-4">
-							<!-- ERROR -->
+							<span id="shipGrdError"></span>
 						</div>
 					</div>
 					<!-- 4 ROW End -->
@@ -101,7 +106,7 @@
 							<form:textarea path="shipDesc" class="form-control" />
 						</div>
 						<div class="col-4">
-							<!-- ERROR -->
+							<span id="shipDescError"></span>
 						</div>
 					</div>
 					<!-- 5 ROW End -->
@@ -109,7 +114,7 @@
 					<div class="row">
 						<div class="col-4"></div>
 						<div class="col-4">
-							<input type="submit" value="CREATE" class="btn btn-success" /> <input
+							<input type="submit" value="CREATE" id="register" class="btn btn-success" /> <input
 								type="reset" value="CLEAN" class="btn btn-danger" />
 						</div>
 					</div>
@@ -126,6 +131,136 @@
 		<!-- End of Card -->
 	</div>
 	<!-- End of container -->
+	
+	
+	<!-- JQuery Validation -->
+	
+	<script type="text/javascript">
+      $(document).ready(function(){
+           //Hide Error Section
+           $("#shipDescError").hide();
+           $("#shipCodeError").hide();
+           $("#enbShipError").hide();
+           $("#shipModeError").hide();
+           $("#shipGrdError").hide();
 
-</body>
+           //define ERROR variable
+           var shipDescError=false;
+           var shipCodeError=false;
+           var enbShipError=false;
+           var shipModeError=false;
+           var shipGrdError=false;
+
+           //link with action event
+           $("#shipDesc").keyup(function(){
+        	     validate_shipDesc();
+               });
+           $("#shipCode").keyup(function(){
+        	   validate_shipCode();
+             });
+           $("#enbShip").change(function(){
+              validate_enbShip();
+             });
+           $("#shipMode").change(function(){
+        	   validate_shipMode();
+             });
+           $('[path="shipGrd"]').change(function(){
+                validate_shipGrd();
+              });
+
+
+           //define validate function
+           
+           function validate_shipGrd(){
+        	   var val=$('[path="shipGrd"].checked').length;
+        	   alert(val);
+             }
+           
+           function validate_shipMode(){
+               var val=$("#shipMode").val();
+               if(val==''){
+                   $("#shipModeError").show();
+                   $("#shipModeError").html("Choose atleast One  <b>MODE Type</>");
+                   $("#shipModeError").css("color","red");
+                   shipModeError=false;
+               }
+              else{
+              	$("#shipModeError").hide();
+              	shipModeError=true;
+               }
+              return shipModeError;
+             }
+           
+           //enable shipment
+           function validate_enbShip(){
+               var val=$("#enbShip").val();
+               if(val==''){
+                   $("#enbShipError").show();
+                   $("#enbShipError").html("Choose atleast One  <b>Yes/No</>");
+                   $("#enbShipError").css("color","red");
+                   enbShipError=false;
+               }
+              else{
+              	$("#enbShipError").hide();
+              	enbShipError=true;
+               }
+              return enbShipError;
+            }
+           
+           //shipmentCode
+           function validate_shipCode(){
+                var val=$("#shipCode").val();
+                if(val==''){
+                     $("#shipCodeError").show();
+                     $("#shipCodeError").html("Must Fill <b>Shipment Code</>");
+                     $("#shipCodeError").css("color","red");
+                     shipCodeError=false;
+                 }
+                else{
+                	$("#shipCodeError").hide();
+                	shipCodeError=true;
+                 }
+                return shipCodeError;
+            }
+           //shipDescription
+           function validate_shipDesc(){
+        	 //read input value
+        	 var val=$("#shipDesc").val();
+          	 //check validate or not
+          	 if(val==''){
+                 $("#shipDescError").show();
+                 $("#shipDescError").html("write some <b>NOTE</b>");
+                 $("#shipDescError").css("color","red");
+                 shipDescError=false;
+              }
+          	 else{
+          		 $("#shipDescError").hide();
+          		 shipDescError=true;
+              }
+             return shipDescError;
+            }
+
+           //click on create UOM button
+	         $("#register").click(function(){
+                 //on click create button
+                 //reset flag as false
+	 			    shipDescError = false;
+	 			    shipCodeError = false;
+	 			    enbShipError = false;
+	 			    shipModeError = false;
+				   //call validate function
+        	       validate_shipMode();
+                   validate_enbShip();
+            	   validate_shipCode();
+                   validate_shipDesc();
+				  //check if all are true then submit else don't
+					  if(shipDescError && shipCodeError && enbShipError && shipModeError){
+                          return true;
+						  }
+					  else return false;
+		         });
+         
+        });
+	</script>
+ </body>
 </html>

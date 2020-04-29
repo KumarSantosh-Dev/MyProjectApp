@@ -15,4 +15,6 @@ public interface IUomDao {
 	List<Object[]> getUomTypeCount();
 	
 	List<Object[]> getUomIdAndUomModel();
+	//Validation methods
+	boolean isUomModelExist(String uomModel);
 }

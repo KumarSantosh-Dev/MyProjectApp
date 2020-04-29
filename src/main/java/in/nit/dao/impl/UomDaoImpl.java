@@ -54,4 +54,18 @@ public class UomDaoImpl implements IUomDao{
 		List<Object[]> list=(List<Object[]>) ht.find(hql);
 		return list;
 	}
+	
+	@Override
+	public boolean isUomModelExist(String uomModel) {
+		boolean flag=false;
+		String hql=" SELECT COUNT(uomModel) FROM in.nit.model.Uom WHERE uomModel=?0 ";
+        @SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql,uomModel);
+		 if(list!=null && !list.isEmpty()) {
+			 Long count=list.get(0);
+			 if(count==0)  flag=false;
+			 else  flag=true;
+		 }
+        return flag;
+	}
 }

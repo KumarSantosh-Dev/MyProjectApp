@@ -56,4 +56,19 @@ public class OrderMethodDaoImpl implements IOrderMethodDao {
 		List<Object[]> list=(List<Object[]>) ht.find(hql,orderMode);
 		return list;
 	}
+	@Override
+	public boolean isOrderCodeExist(String orderCode) {
+        boolean flag=false;
+        String hql=" SELECT COUNT(orderCode) FROM in.nit.model.OrderMethod WHERE orderCode=?0 ";
+        @SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql, orderCode);
+        if(list!=null && !list.isEmpty()) {
+        	long count=list.get(0);
+        	if(count==0)
+        		flag=false;
+        	else
+        		flag=true;
+        }
+		return flag;
+	}
 }

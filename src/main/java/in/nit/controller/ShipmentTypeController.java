@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import in.nit.model.ShipmentType;
 import in.nit.service.IShipmentTypeService;
 import in.nit.util.ShipmentTypeUtils;
+import in.nit.validator.ShipmentTypeValidator;
 import in.nit.view.ShipmentTypeExcelView;
 import in.nit.view.ShipmentTypePdfView;
 
@@ -24,6 +26,8 @@ import in.nit.view.ShipmentTypePdfView;
 @RequestMapping("/shipment")
 public class ShipmentTypeController {
 
+	@Autowired
+	private ShipmentTypeValidator validator;
 	@Autowired
 	private IShipmentTypeService service;
 	@Autowired
@@ -53,13 +57,21 @@ public class ShipmentTypeController {
 	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	public String saveShipmentType(
 			@ModelAttribute ShipmentType shipmentType,
+			Errors errors,
 			Model model
 			)
 	{
-		Integer id=service.saveShipmentType(shipmentType);
-		String message="ShipmentType '"+id+"' Saved";
-		model.addAttribute("message",message);
-		model.addAttribute("shipmentType",new ShipmentType());
+		
+		validator.validate(shipmentType, errors);
+		if(!errors.hasErrors()) {
+			Integer id=service.saveShipmentType(shipmentType);
+			String message="ShipmentType '"+id+"' Saved";
+			model.addAttribute("message",message);
+			model.addAttribute("shipmentType",new ShipmentType());
+		}
+		else {
+			model.addAttribute("message","Plz check all errors!!!");
+		}
 		return "ShipmentTypeRegister";
 	}
 

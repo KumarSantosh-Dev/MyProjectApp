@@ -16,5 +16,6 @@ public interface IOrderMethodService {
 	
 	List<Object[]> getOrderIdAndOrderCode(String orderMode);
 
+	boolean isOrderCodeExist(String orderCode);
 
 }

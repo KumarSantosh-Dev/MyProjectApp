@@ -55,4 +55,8 @@ public class UomServiceImpl implements IUomService{
     public List<Object[]> getUomIdAndUomModel() {
     	return dao.getUomIdAndUomModel();
     }
+    @Transactional(readOnly = true)
+    public boolean isUomModelExist(String uomModel) {
+    	return dao.isUomModelExist(uomModel);
+    }
 }

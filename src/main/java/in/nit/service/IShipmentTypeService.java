@@ -17,5 +17,5 @@ public interface IShipmentTypeService {
 	
 	List<Object[]> getShipmentIdAndCode();
 
-
+	boolean isShipCodeExist(String shipCode);
 }

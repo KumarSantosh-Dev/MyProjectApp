@@ -17,5 +17,8 @@ public interface IWhUserTypeService {
 	
 	List<Object[]> getWhUserIdAndCode(String userType);
 
-
+	boolean isUserCodeExist(String userCode);
+	boolean isUserEmailExist(String userEmail);
+	boolean isUserContactExist(String userContact);
+	boolean isidNumExist(String idNum);
 }

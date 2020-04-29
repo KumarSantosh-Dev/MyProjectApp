@@ -49,8 +49,11 @@
             <div class="col-4">
               <form:input path="uomModel" class="form-control"/>
             </div>
-            <div class="col-4">
+            <div class="col-2">
               <span id="uomModelError"></span>
+            </div>
+            <div class="col-2">
+              <form:errors path="uomModel" cssClass="text-danger"/>
             </div>
           </div>
           <!-- One Row End -->

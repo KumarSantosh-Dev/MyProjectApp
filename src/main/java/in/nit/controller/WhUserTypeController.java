@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import in.nit.model.WhUserType;
 import in.nit.service.IWhUserTypeService;
 import in.nit.util.WhUserTypeUtils;
+import in.nit.validator.WhUserTypeValidaor;
 import in.nit.view.WhUserTypeExcelView;
 import in.nit.view.WhUserTypePdfView;
 
@@ -26,6 +28,8 @@ import in.nit.view.WhUserTypePdfView;
 @RequestMapping("/user")
 public class WhUserTypeController {
 	
+	@Autowired
+	private WhUserTypeValidaor validator;
 	@Autowired
 	private IWhUserTypeService service;
 	@Autowired
@@ -55,12 +59,21 @@ public class WhUserTypeController {
 	@RequestMapping(value = "/save",method =POST)
 	public String saveWhUserType(
 			 @ModelAttribute WhUserType whUserType,
+			 Errors errors,
 			 Model model
 			) {
-		Integer id=service.saveWhUserType(whUserType);
-		String message="WhUserType '"+id+"' is Successfully Saved...";
-		model.addAttribute("message",message);
-		model.addAttribute("whUserType", new WhUserType());
+		
+		validator.validate(whUserType, errors);
+		if(!errors.hasErrors()) {
+			Integer id=service.saveWhUserType(whUserType);
+			String message="WhUserType '"+id+"' is Successfully Saved...";
+			model.addAttribute("message",message);
+			model.addAttribute("whUserType", new WhUserType());
+		}
+		else {
+			model.addAttribute("message","Plz Check all Errors");
+		}
+		
 		return "WhUserTypeRegister";
 	}
 	

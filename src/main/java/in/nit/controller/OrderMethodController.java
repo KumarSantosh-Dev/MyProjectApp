@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +19,16 @@ import org.springframework.web.servlet.ModelAndView;
 import in.nit.model.OrderMethod;
 import in.nit.service.IOrderMethodService;
 import in.nit.util.OrderMethodUtils;
+import in.nit.validator.OrderMethodValidator;
 import in.nit.view.OrderMethodExcelView;
 import in.nit.view.OrderMethodPdfView;
 
 @Controller
 @RequestMapping("/order")
 public class OrderMethodController {
-	
+
+	@Autowired
+	private OrderMethodValidator validator;
 	@Autowired
 	private IOrderMethodService service;
 	@Autowired
@@ -56,12 +60,11 @@ public class OrderMethodController {
 			  @ModelAttribute OrderMethod orderMethod,
 			  Model model
 			  ) {
-		Integer id=service.saveOrderMethod(orderMethod);
-		String msg="Orderred Method '"+id+"' is Saved";
-		model.addAttribute("message",msg);
-
-		model.addAttribute("orderMethod", new OrderMethod());
-		return "OrderMethodRegister";
+			Integer id=service.saveOrderMethod(orderMethod);
+			String msg="Orderred Method '"+id+"' is Saved";
+			model.addAttribute("message",msg);
+			model.addAttribute("orderMethod", new OrderMethod());
+     		return "OrderMethodRegister";
 	}
 	
 	/**3.
